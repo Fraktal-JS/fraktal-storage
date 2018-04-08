@@ -11,7 +11,9 @@ if (!fs.existsSync(path.join(storeDir, "storage.json"))) fs.writeFileSync(path.j
 module.exports = new Proxy(JSON.parse(fs.readFileSync(path.join(storeDir, "storage.json")), { encoding: "utf8" }), {
     set: (object, key, value) => {
         object[key] = value;
-        fs.writeFileSync(path.join(storeDir, "storage.json"), JSON.stringify(object));
+
+        console.log(JSON.stringify(object));
+        fs.writeFile(path.join(storeDir, "storage.json"), JSON.stringify(object), (err) => console.log(err));
 
         return object;
     }
