@@ -12,8 +12,8 @@ module.exports = new Proxy(JSON.parse(fs.readFileSync(path.join(storeDir, "stora
     set: (object, key, value) => {
         object[key] = value;
 
-        console.log(JSON.stringify(object));
-        fs.writeFile(path.join(storeDir, "storage.json"), JSON.stringify(object), (err) => console.log(err));
+        //console.log(JSON.stringify(object));
+        fs.writeFile(path.join(storeDir, "storage.json"), JSON.stringify(object), (err) => err ? console.log(err) : null);
 
         return object;
     }
