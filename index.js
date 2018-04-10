@@ -6,6 +6,7 @@ const app = electron.app || electron.remote.app;
 
 const storeDir = app.getPath("userData");
 
+if (!fs.existsSync(storeDir)) fs.mkdirSync(storeDir);
 if (!fs.existsSync(path.join(storeDir, "storage.json"))) fs.writeFileSync(path.join(storeDir, "storage.json"), "{}");
 
 module.exports = new Proxy(JSON.parse(fs.readFileSync(path.join(storeDir, "storage.json")), { encoding: "utf8" }), {
